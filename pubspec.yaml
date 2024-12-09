@@ -13,10 +13,14 @@ dependencies:
     sdk: flutter
 
 
+  flutter_localizations:
+    sdk: flutter
 
   cupertino_icons: ^1.0.6
   internet_connection_checker_plus: ^2.5.1
   webview_flutter: ^4.8.0
+  get: ^4.6.6
+  shared_preferences: ^2.3.2
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +38,7 @@ flutter:
   assets:
     - assets/
     - assets/logo/
+    - assets/icon/
 
   # fonts:
   #   - family: Schyler

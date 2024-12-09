@@ -3,9 +3,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:nddpt/language/language_controllers.dart';
 import 'package:nddpt/screen/appointment_screen.dart';
 import 'package:nddpt/screen/login_screen.dart';
+import 'package:nddpt/widget/custom_toggle.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -78,6 +81,19 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('NDDPT',style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),),
         backgroundColor: Colors.orange,
         centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: GetBuilder<LocaleController>(
+              id: "0",
+              builder: (localeController) {
+                return CustomToggle(buttontext: 'Language'.tr, initialSwitchState: localeController.isSwitched, onToggle: (bool value) {
+                  localeController.toggleSwitch(value);
+                }, imageFirst: 'assets/icon/en.png', imageSecond: 'assets/icon/bn.png');
+              },
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -85,6 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
           child: isConnectedToInternet ? Column(
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
+
 
               Image.asset('assets/logo/app_logo1.png', height: 280, width: 280),
 
@@ -107,9 +125,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.orange,
                   ),
-                  child: const Text('Appointment',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white)),
+                  child: Text('Appointment'.tr,
+                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white)),
                 ),
               ),
               const SizedBox(height: 20),
@@ -127,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.orange,
                   ),
-                  child: const Text('Login', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white)),
+                  child: Text('Login'.tr, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white)),
                 ),
               ),
 
@@ -140,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 const Icon(Icons.wifi_off, size: 80, color: Colors.black54,),
                 const SizedBox(height: 10),
-                const Text('Your Internet Connection is Off !', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+                Text('Your Internet Connection is Off !'.tr, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
 
                 const SizedBox(height: 40),
                 InkWell(
@@ -155,10 +172,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.orange,
                     ),
-                    child: const Text('On Internet Connection', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white)),
+                    child: Text('On Internet Connection'.tr, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white)),
                   ),
                 ),
-
               ],
             ),
           ),
